@@ -19,7 +19,7 @@ final class NetworkCaller: NetworkManagerProtocol {
     private init() {}
     
     func fetchData<T: Codable>(_ endpoint: EndPoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
-        AF.request(endpoint.request()).validate().responseDecodable(of: T.self) { response in
+        AF.request(endpoint.request()).responseDecodable(of: T.self) { response in
             guard response.error == nil else {
                 completion(.failure(.unableToCompleteError))
                 return
@@ -51,7 +51,7 @@ final class NetworkCaller: NetworkManagerProtocol {
     
     func searchData<T: Codable>(query: String?, _ endpoint: EndPoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
         guard let query = query else { return }
-        AF.request(endpoint.searchRequest(query: query)).validate().responseDecodable(of: T.self) { response in
+        AF.request(endpoint.searchRequest(query: query)).responseDecodable(of: T.self) { response in
             guard response.error == nil else {
                 completion(.failure(.unableToCompleteError))
                 return
