@@ -19,6 +19,6 @@ class SearchCellViewModel {
     }
     
     private func makeImageUrl(imageString: String) -> URL? {
-        return URL(string: "https://image.tmdb.org/t/p/w500\(imageString)") ?? URL(string: "https://t3.ftcdn.net/jpg/03/27/55/60/360_F_327556002_99c7QmZmwocLwF7ywQ68ChZaBry1DbtD.jpg")
+        return URL(string: "https://image.tmdb.org/t/p/w500\(imageString)") ?? URL(string: "https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
     }
 }
