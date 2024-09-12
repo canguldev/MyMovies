@@ -117,6 +117,7 @@ extension HomeVC: UITableViewDataSource {
         guard let cell = moviesTableView.dequeueReusableCell(withIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         switch indexPath.section {
         case TableViewSections.nowPlaying.rawValue:
             cell.setupCell(viewModel: nowPlayingDataSource)
@@ -128,5 +129,12 @@ extension HomeVC: UITableViewDataSource {
             break
         }
         return cell
+    }
+}
+
+extension HomeVC: CollectionViewCellDelegate {
+    func collectionViewCellDidTapCell(_ cell: CollectionViewCell, viewModel: MovieDetailViewModel) {
+        let destinationVC = MovieDetailVC(viewModel: viewModel)
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
 }

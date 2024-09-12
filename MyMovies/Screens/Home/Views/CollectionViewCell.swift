@@ -8,12 +8,17 @@
 import UIKit
 import SnapKit
 
+protocol CollectionViewCellDelegate: AnyObject {
+    func collectionViewCellDidTapCell(_ cell: CollectionViewCell, viewModel: MovieDetailViewModel)
+}
+
 class CollectionViewCell: UITableViewCell {
     
     //MARK: - Variables
     static let identifier = "CollectionViewCell"
     let layout = UICollectionViewFlowLayout()
     var cellDataSource: [HomeCellViewModel] = []
+    weak var delegate: CollectionViewCellDelegate?
     
     //MARK: - UI Elements
     private lazy var moviesCollectionView: UICollectionView = {
@@ -74,7 +79,10 @@ extension CollectionViewCell: UICollectionViewDelegateFlowLayout {
 
 //MARK: - UICollectionViewDelegate
 extension CollectionViewCell: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let movie = cellDataSource[indexPath.row].movie else { return }
+        delegate?.collectionViewCellDidTapCell(self, viewModel: MovieDetailViewModel(movie: movie))
+    }
 }
 
 //MARK: - UICollectionViewDataSource
