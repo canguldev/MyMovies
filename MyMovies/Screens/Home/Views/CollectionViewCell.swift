@@ -16,6 +16,7 @@ class CollectionViewCell: UITableViewCell {
     
     //MARK: - Variables
     static let identifier = "CollectionViewCell"
+    var viewModel = CollectionViewCellViewModel()
     let layout = UICollectionViewFlowLayout()
     var cellDataSource: [HomeCellViewModel] = []
     weak var delegate: CollectionViewCellDelegate?
@@ -66,6 +67,12 @@ class CollectionViewCell: UITableViewCell {
     func reloadCollectionView() {
         self.moviesCollectionView.reloadData()
     }
+    
+    //MARK: - @Actions
+    private func addToFavorite(indexPath: IndexPath) {
+        guard let movie = cellDataSource[indexPath.row].movie else { return }
+        viewModel.saveMovieToDatabase(movie: movie)
+    }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
@@ -83,12 +90,23 @@ extension CollectionViewCell: UICollectionViewDelegate {
         guard let movie = cellDataSource[indexPath.row].movie else { return }
         delegate?.collectionViewCellDidTapCell(self, viewModel: MovieDetailViewModel(movie: movie))
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let indexPath = indexPaths.first else { return nil }
+        let config = UIContextMenuConfiguration(actionProvider:  { [weak self] _ in
+            let favoriteAction = UIAction(title: "Add to favorites", image: UIImage(systemName: "heart")) { _ in
+                self?.addToFavorite(indexPath: indexPath)
+            }
+            return UIMenu(options: .displayInline, children: [favoriteAction])
+        })
+        return config
+    }
 }
 
 //MARK: - UICollectionViewDataSource
 extension CollectionViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellDataSource.count
+        return viewModel.itemsCount(cellDataSource: cellDataSource)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -11,7 +11,7 @@ class ComingSoonViewModel {
     var cellDataSource: Observable<[ComingSoonCellViewModel]> = Observable(nil)
     var dataSource: Movies?
     
-    func numberOfItemsInSection() -> Int {
+    func itemCount() -> Int {
         return dataSource?.results?.count ?? 0
     }
     

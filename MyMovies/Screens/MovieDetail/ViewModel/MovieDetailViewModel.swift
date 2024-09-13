@@ -22,6 +22,17 @@ class MovieDetailViewModel {
         self.movieImage = makeImageUrl(movie.backdropPath ?? "")
     }
     
+    func saveMovieToDatabase(movie: Movie) {
+        MovieDatabaseService.shared.saveMovieToDatabase(model: movie) { result in
+            switch result {
+            case .success():
+                print("")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     private func makeImageUrl(_ imageString: String) -> URL? {
         return URL(string: "https://image.tmdb.org/t/p/w500\(imageString)") ?? URL(string: "https://images.pexels.com/photos/3945313/pexels-photo-3945313.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
     }

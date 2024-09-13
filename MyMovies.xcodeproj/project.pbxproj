@@ -43,6 +43,9 @@
 		368967252C9381930077BA5A /* MyMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 368967232C9381930077BA5A /* MyMovies.xcdatamodeld */; };
 		368967282C9381E60077BA5A /* DatabaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368967272C9381E60077BA5A /* DatabaseConstants.swift */; };
 		3689672A2C9382040077BA5A /* MovieDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368967292C9382040077BA5A /* MovieDatabaseService.swift */; };
+		3689672C2C9385470077BA5A /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3689672B2C9385470077BA5A /* FavoritesCell.swift */; };
+		3689672F2C9385670077BA5A /* FavoritesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3689672E2C9385670077BA5A /* FavoritesCellViewModel.swift */; };
+		368967312C9386350077BA5A /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368967302C9386350077BA5A /* FavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +84,9 @@
 		368967242C9381930077BA5A /* MyMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyMovies.xcdatamodel; sourceTree = "<group>"; };
 		368967272C9381E60077BA5A /* DatabaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConstants.swift; sourceTree = "<group>"; };
 		368967292C9382040077BA5A /* MovieDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDatabaseService.swift; sourceTree = "<group>"; };
+		3689672B2C9385470077BA5A /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
+		3689672E2C9385670077BA5A /* FavoritesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCellViewModel.swift; sourceTree = "<group>"; };
+		368967302C9386350077BA5A /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				368966D12C93140F0077BA5A /* Views */,
+				3689672D2C93854B0077BA5A /* ViewModels */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -235,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				368966D62C9314A60077BA5A /* FavoritesVC.swift */,
+				3689672B2C9385470077BA5A /* FavoritesCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,6 +378,15 @@
 			path = DatabaseService;
 			sourceTree = "<group>";
 		};
+		3689672D2C93854B0077BA5A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				368967302C9386350077BA5A /* FavoritesViewModel.swift */,
+				3689672E2C9385670077BA5A /* FavoritesCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -451,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				368966E32C9319980077BA5A /* NetworkConstants.swift in Sources */,
+				3689672C2C9385470077BA5A /* FavoritesCell.swift in Sources */,
 				368967012C93491D0077BA5A /* CollectionViewCellViewModel.swift in Sources */,
 				368966EC2C931C550077BA5A /* TableViewSections.swift in Sources */,
 				368967082C9357960077BA5A /* MovieDetailViewModel.swift in Sources */,
@@ -473,6 +491,8 @@
 				3689670E2C935BF30077BA5A /* SearchResultsVC.swift in Sources */,
 				368966F32C931EFB0077BA5A /* HomeCell.swift in Sources */,
 				368966F12C931DBE0077BA5A /* CollectionViewCell.swift in Sources */,
+				368967312C9386350077BA5A /* FavoritesViewModel.swift in Sources */,
+				3689672F2C9385670077BA5A /* FavoritesCellViewModel.swift in Sources */,
 				368966DA2C9315250077BA5A /* TabBarController.swift in Sources */,
 				368966FC2C9339450077BA5A /* Observable.swift in Sources */,
 				368967132C935C2D0077BA5A /* SearchViewModel.swift in Sources */,

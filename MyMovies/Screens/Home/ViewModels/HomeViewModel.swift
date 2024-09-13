@@ -34,9 +34,11 @@ class HomePageViewModel {
     private func mapNowPlayingData() {
         nowPlayingDataSource.value = dataSource?.results?.compactMap({HomeCellViewModel(movie: $0)})
     }
+    
     private func mapPopularData() {
         popularDataSource.value = dataSource?.results?.compactMap({HomeCellViewModel(movie: $0)})
     }
+    
     private func mapTopRatedData() {
         topRatedDataSource.value = dataSource?.results?.compactMap({HomeCellViewModel(movie: $0)})
     }

@@ -87,7 +87,7 @@ extension ComingSoonVC: UICollectionViewDelegate {
 //MARK: - UICollectionViewDataSource
 extension ComingSoonVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection()
+        return viewModel.itemCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

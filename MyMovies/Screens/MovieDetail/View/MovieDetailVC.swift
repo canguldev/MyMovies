@@ -48,13 +48,21 @@ class MovieDetailVC: UIViewController {
         return textView
     }()
     
-    private lazy var movieDownloadButton: UIButton = {
+    private lazy var movieFavoriteButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Add to favorites", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var favoriteAlert: UIAlertController = {
+        let alert = UIAlertController(title: "Successful!", message: "The movie has been successfully added to your favorite movies list.", preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alert.addAction(closeAction)
+        return alert
     }()
     
     //MARK: - Lifecycle
@@ -88,7 +96,7 @@ class MovieDetailVC: UIViewController {
     }
     
     private func configureUIElements() {
-        view.addSubviewsFromExt(movieTitleLabel, movieImageView, movieVoteLabel, movieDescriptionTextView, movieDownloadButton)
+        view.addSubviewsFromExt(movieTitleLabel, movieImageView, movieVoteLabel, movieDescriptionTextView, movieFavoriteButton)
         let standartPadding: CGFloat = 10
         movieTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(standartPadding)
@@ -110,13 +118,19 @@ class MovieDetailVC: UIViewController {
             make.top.equalTo(movieVoteLabel.snp.bottom).offset(standartPadding)
             make.left.equalToSuperview().offset(standartPadding)
             make.right.equalToSuperview().offset(-standartPadding)
-            make.bottom.equalTo(movieDownloadButton.snp.top).offset(-standartPadding)
+            make.bottom.equalTo(movieFavoriteButton.snp.top).offset(-standartPadding)
         }
-        movieDownloadButton.snp.makeConstraints { make in
+        movieFavoriteButton.snp.makeConstraints { make in
             make.height.equalTo(40)
             make.left.equalToSuperview().offset(standartPadding)
             make.right.equalToSuperview().offset(-standartPadding)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-standartPadding)
         }
+    }
+    
+    //MARK: - @Actions
+    @objc func addToFavorite() {
+        viewModel.saveMovieToDatabase(movie: viewModel.movie)
+        self.present(favoriteAlert, animated: true)
     }
 }
